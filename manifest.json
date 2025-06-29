@@ -7,4 +7,6 @@
   "author": "Artem",
   "authorUrl": "https://github.com/ArtemSunRise",
   "isDesktopOnly": true
+  "main": "main.js"
+
 }

@@ -3,7 +3,7 @@ import { exec, ChildProcessWithoutNullStreams } from "child_process";
 import * as fs from "fs";
 import * as path from "path";
 
-export default class TelegramReminderPlugin extends Plugin {
+class TelegramReminderPlugin extends Plugin {
   botProcess: ChildProcessWithoutNullStreams | null = null;
 
   async onload() {
@@ -74,3 +74,6 @@ export default class TelegramReminderPlugin extends Plugin {
     this.stopPythonBot();
   }
 }
+
+// 👇 Обязательный экспорт для Obsidian (CommonJS)
+module.exports = TelegramReminderPlugin;
