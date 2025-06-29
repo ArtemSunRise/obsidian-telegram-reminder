@@ -49,14 +49,18 @@ var TelegramReminderPlugin = class extends import_obsidian.Plugin {
   async copyMainPyIfMissing() {
     const vaultPath = this.app.vault.adapter.basePath;
     const dest = path.join(vaultPath, "main.py");
-    const src = path.join(this.manifest.dir, "main.py");
     if (!fs.existsSync(dest)) {
+      const url = "https://raw.githubusercontent.com/ArtemSunRise/obsidian-telegram-reminder/main/main.py";
       try {
-        fs.copyFileSync(src, dest);
-        new import_obsidian.Notice("\u2705 main.py \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D \u0432 \u043A\u043E\u0440\u0435\u043D\u044C \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430");
+        const res = await fetch(url);
+        if (!res.ok)
+          throw new Error(`HTTP ${res.status}`);
+        const content = await res.text();
+        fs.writeFileSync(dest, content);
+        new import_obsidian.Notice("\u2705 main.py \u0437\u0430\u0433\u0440\u0443\u0436\u0435\u043D \u0432 \u043A\u043E\u0440\u0435\u043D\u044C \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430");
       } catch (e) {
-        console.error("\u041E\u0448\u0438\u0431\u043A\u0430 \u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F main.py", e);
-        new import_obsidian.Notice("\u274C \u041E\u0448\u0438\u0431\u043A\u0430 \u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F main.py");
+        console.error("\u041E\u0448\u0438\u0431\u043A\u0430 \u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438 main.py", e);
+        new import_obsidian.Notice("\u274C \u041E\u0448\u0438\u0431\u043A\u0430 \u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438 main.py");
       }
     }
   }
