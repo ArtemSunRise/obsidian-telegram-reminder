@@ -1,10 +1,10 @@
 {
-  "id": "telegram-reminder-plugin",
+  "id": "obsidian-telegram-reminder",
   "name": "Telegram Reminder Bot",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
   "description": "Запускает Telegram напоминания на основе задач Obsidian",
   "author": "Artem",
-  "authorUrl": "",
+  "authorUrl": "https://github.com/ArtemSunRise",
   "isDesktopOnly": true
 }
